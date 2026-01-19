@@ -177,3 +177,10 @@ SELECT blocked_locks.pid     AS blocked_pid,
 
 
 ### 12. Setup Github Actions for Golang + Postgres to run automated tests
+Add progrest service
+
+Install golang migate cli
+*https://github.com/golang-migrate/migrate/tree/master/cmd/migrate
+** Release Downloads
+
+>curl -L https://github.com/golang-migrate/migrate/releases/download/v4.19.1/migrate.linux-amd64.tar.gz | tar xvz
