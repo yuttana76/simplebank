@@ -184,3 +184,21 @@ Install golang migate cli
 ** Release Downloads
 
 >curl -L https://github.com/golang-migrate/migrate/releases/download/v4.19.1/migrate.linux-amd64.tar.gz | tar xvz
+
+### 13 Implement RESTful HTTP API in Go using Gin
+
+Install gin
+go get github.com/gin-gonic/gin
+
+document here
+https://github.com/gin-gonic/gin?tab=readme-ov-file
+
+
+sqlc / validation
+https://docs.sqlc.dev/en/latest/tutorials/getting-started-postgresql.html#query-verification
+
+Start gin by use make 
+>make server
+
+### 14. Load config from file & environment variables in Go with Viper
+
