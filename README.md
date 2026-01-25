@@ -15,7 +15,7 @@ v4.11.0
 >migrate help
 
 Create files
->migrate create -ext sql -dir db/migration init_sechema
+>migrate create -ext sql -dir db/migration2 -seq init_sechema
 
 Shell to postgres db.
 >docker exec -it db-simplebank /bin/sh
@@ -202,3 +202,66 @@ Start gin by use make
 
 ### 14. Load config from file & environment variables in Go with Viper
 
+Use viper  
+https://github.com/spf13/viper
+Install
+>go get github.com/spf13/viper
+
+### 15. Mock DB for testing HTTP API in Go and achieve 100% coverage
+
+gomock
+install package
+>go install github.com/golang/mock/mockgen@v1.6.0
+
+>which mocgen
+mocgen not found
+
+>vi ~/.zshrc
+OR >vi ~/.bash_profile
+click i insert mode
+click esc 
+press :wq
+
+>source ~/.zshrc
+>which mockgen
+
+User mockgen
+>mockgen -help
+
+### Generate code for Store interface to db/mock/store.go
+>mockgen -package mockdb -destination db/mock/store.go github.com/yuttana76/simbplebank/db/sqlc Store
+
+### 17. Add users table with unique & foreign key constraints in PostgreSQL
+(This for add new model or change model TODO)
+1. create dbdiagram  https://dbdiagram.io/d
+2. export to postgrestdb
+3. create migrate file sqlc
+Create files
+>migrate create -ext sql -dir db/migration -seq add_users
+
+4.put sql script only added. to next seq file(generated(Step.3))
+
+5.migrate to db
+5.1 Run command 
+    >make migrateup1 
+5.2 Incase has some thing wrong haveto restore back 1 step
+>make migratedown1 
+(see table schema_migrations. should be version you want to stpe down. And dirty column must be NULL)
+
+### 18. How to handle DB errors in Golang correctly
+1.create file db.query.user.sql
+2.run >make sqlc 
+3.check file.
+    (Modify)db.sqlc.models.go
+    (Create)db.sqlc.user.sql
+4.create user_test.sql
+
+implement api test (mock)
+5.run >make mock
+6.run >make test
+
+### 19. How to securely store passwords? Hash password in Go with Bcrypt!
+(has resources files)
+
+api validator
+https://github.com/go-playground/validator
