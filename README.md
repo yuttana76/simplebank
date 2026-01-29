@@ -281,3 +281,22 @@ https://github.com/golang-jwt/jwt
 PASETO
 https://github.com/o1egl/paseto?tab=readme-ov-file#installation
 >go get -u github.com/o1egl/paseto
+
+### 23. Implement login user API that returns PASETO or JWT access token in Go
+
+>git reset --hard <commit-hash>
+>git reset --hard 7d3fcc5a3f469adf921ae0f08799c7f7a8e3d13d
+
+Refer lecture 12
+Add app.env
+Update /util/config.go
+
+run server
+>make server
+
+Test postman 
+http://localhost:8080/users/login
+{
+    "username":"yuttana",
+    "password":"password"
+}
