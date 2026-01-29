@@ -265,3 +265,19 @@ implement api test (mock)
 
 api validator
 https://github.com/go-playground/validator
+
+### 20. How to write stronger unit tests with a custom gomock matcher
+# Refer to lecture 13
+-jwt-> HS256,RSA
+-PASETO (Platform-Agnostic SEcurity TOkens) ->AES256
+
+### 22. How to create and verify JWT & PASETO token in Golang
+
+Install jwt
+https://github.com/golang-jwt/jwt
+
+>go get github.com/golang-jwt/jwt/v5
+
+PASETO
+https://github.com/o1egl/paseto?tab=readme-ov-file#installation
+>go get -u github.com/o1egl/paseto
