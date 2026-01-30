@@ -284,6 +284,7 @@ https://github.com/o1egl/paseto?tab=readme-ov-file#installation
 
 ### 23. Implement login user API that returns PASETO or JWT access token in Go
 
+Code error !! Restor to previos commit
 >git reset --hard <commit-hash>
 >git reset --hard 7d3fcc5a3f469adf921ae0f08799c7f7a8e3d13d
 
@@ -300,3 +301,17 @@ http://localhost:8080/users/login
     "username":"yuttana",
     "password":"password"
 }
+
+Modify /db/query/account.sql
+    -- name: ListAccounts :many
+    SELECT * FROM accounts
+    WHERE owner = $1  // Add here
+    ORDER BY id
+    LIMIT $2 OFFSET $3;
+
+Run sqlc to generate code
+>make sqlc
+
+Run mock to generate mock
+>make mock
+
