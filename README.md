@@ -336,3 +336,13 @@ Delete remote branch
 
 update go lang to version=1.16.3
 go.mod
+
+Docker hub
+https://hub.docker.com/
+
+Command delete images <none>
+docker rmi $(docker images -f "dangling=true" -q)
+
+Docker build
+>docker build -t simplebank:latest .
+>dockage images
