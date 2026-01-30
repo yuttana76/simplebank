@@ -11,9 +11,9 @@ import (
 )
 
 const (
-	authorizationHeaderKey   = "authorization"
-	authonrizationTypeBearer = "bearer"
-	authorizationPayloadKey  = "authorization_payload"
+	authorizationHeaderKey  = "authorization"
+	authorizationTypeBearer = "bearer"
+	authorizationPayloadKey = "authorization_payload"
 )
 
 func authMiddlewre(tokenMaker token.Maker) gin.HandlerFunc {
@@ -33,7 +33,7 @@ func authMiddlewre(tokenMaker token.Maker) gin.HandlerFunc {
 		}
 
 		authorizationType := strings.ToLower(fields[0])
-		if authorizationType != authonrizationTypeBearer {
+		if authorizationType != authorizationTypeBearer {
 			err := fmt.Errorf("unsupported authorization type %s", authorizationType)
 			ctx.AbortWithStatusJSON(http.StatusUnauthorized, errorResponse(err))
 			return
