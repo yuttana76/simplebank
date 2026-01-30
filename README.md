@@ -315,3 +315,11 @@ Run sqlc to generate code
 Run mock to generate mock
 >make mock
 
+### 24. Implement authentication middleware and authorization rules in Golang using Gin
+
+### 25. How to build a small Golang Docker image with a multistage Dockerfile
+create new branch(ft=feature)
+>git checkout -b ft/docker
+
+update go lang to version=1.16.3
+go.mod
