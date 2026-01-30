@@ -321,5 +321,18 @@ Run mock to generate mock
 create new branch(ft=feature)
 >git checkout -b ft/docker
 
+
+Summary of Commands
+Action 	Command
+Delete local branch (safe, merged only)	
+>git branch -d <branch-name>
+
+Delete local branch (force)	
+>git branch -D <branch-name>
+
+Delete remote branch	
+>git push origin --delete <branch-name>
+
+
 update go lang to version=1.16.3
 go.mod
