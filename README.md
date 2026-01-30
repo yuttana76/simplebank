@@ -386,5 +386,13 @@ Create bank network
 >docker network connect bank-network  db-simplebank
 
 
-Run with connect db container
+Run simplebank container with connect db container
 >docker run --name simplebank --network bank-network -p 8080:8080 -e GIN_MODE=release -e DB_SOURCE="postgresql://postgres:postgres@db-simplebank:5432/simple_bank?sslmode=disable" simplebank:latest
+
+### 27. How to write docker-compose file and control service start-up orders
+
+Doc reference
+https://docs.docker.com/reference/compose-file/services/
+
+Create start.sh
+>chmod +x start.sh
