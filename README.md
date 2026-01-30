@@ -341,8 +341,50 @@ Docker hub
 https://hub.docker.com/
 
 Command delete images <none>
-docker rmi $(docker images -f "dangling=true" -q)
+>docker rmi $(docker images -f "dangling=true" -q)
+
+Delete container
+>docker rm <container name>
+>docker rm simplebank
 
 Docker build
 >docker build -t simplebank:latest .
 >dockage images
+
+### 26. How to use docker network to connect 2 stand-alone containers
+
+Test run simplebank image
+Ron development mode
+>docker run --name simplebank -p 8080:8080 simplebank:latest
+
+Run with production mode.
+>docker run --name simplebank -p 8080:8080 -e GIN_MODE=release simplebank:latest
+
+Run with connect db container
+>docker run --name simplebank -p 8080:8080 -e GIN_MODE=release -e DB_SOURCE="postgresql://postgres:postgres@172.17.0.2:5432/simple_bank?sslmode=disable" simplebank:latest
+
+
+
+>docker container inspect db-simplebank
+
+> docker network ls
+>docker network inspect go-simplebank_default
+
+"ConfigOnly": false,
+        "Containers": {
+            "41afbdc634afec7cbd89cc623343d29132fcbbd3117bd5a915be739d11f5a9e3": {
+                "Name": "db-simplebank",
+                "EndpointID": "f87d2c02fe0d010e816f12a21445ae308ef4b086740e554c885b0eeae87f04be",
+                "MacAddress": "02:42:ac:1a:00:02",
+                "IPv4Address": "172.26.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+
+Create bank network
+>docker network create bank-network
+>docker network connect bank-network  db-simplebank
+
+
+Run with connect db container
+>docker run --name simplebank --network bank-network -p 8080:8080 -e GIN_MODE=release -e DB_SOURCE="postgresql://postgres:postgres@db-simplebank:5432/simple_bank?sslmode=disable" simplebank:latest
