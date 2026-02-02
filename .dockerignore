@@ -1,0 +1,35 @@
+# Ignore the Dockerfile and .dockerignore itself
+Dockerfile
+.dockerignore
+
+# Ignore Go build artifacts
+*.exe
+*.out
+*.o
+*.a
+*.so
+*.h
+*.c
+
+# Ignore vendor directory (if using Go modules)
+vendor/
+
+# Ignore test cache and results
+*.test
+*.prof
+*.cover
+
+# Ignore logs
+*.log
+
+# Ignore IDE/editor files
+.vscode/
+.idea/
+*.swp
+
+# Ignore Git files
+.git
+.gitignore
+
+# Ignore local data
+data/
