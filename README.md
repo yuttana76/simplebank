@@ -404,10 +404,13 @@ Create start.sh
 
 (Not finished) 
 ### 29. Auto build & push docker image to AWS ECR with Github Actions
+
+
+
 1. Create ECR repo.
 2.1 git hub marketplace to see AWS ECR
     https://github.com/marketplace
-    
+
 2.2 Create github/workflow/deploy.yaml
 3. Create IAM user (user github-ci;group: deployment)
 
@@ -416,6 +419,8 @@ Git hub
 - Setting master can't push direcly from local machine.
   - mush pass the unit test
 - Have to use feature branch to push and merge to master branch
+>git checkout -b ft/ci-build-image
+>git push origin ft/ci-build-image
 
 before push feature branch 
 -git checkout master
