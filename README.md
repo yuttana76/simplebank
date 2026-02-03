@@ -386,5 +386,49 @@ Create bank network
 >docker network connect bank-network  db-simplebank
 
 
-Run with connect db container
+Run simplebank container with connect db container
 >docker run --name simplebank --network bank-network -p 8080:8080 -e GIN_MODE=release -e DB_SOURCE="postgresql://postgres:postgres@db-simplebank:5432/simple_bank?sslmode=disable" simplebank:latest
+
+### 27. How to write docker-compose file and control service start-up orders
+
+Doc reference
+https://docs.docker.com/reference/compose-file/services/
+
+Create start.sh
+>chmod +x start.sh
+
+>docker compose down
+>docker rmi go-simplebank-api 
+>docker compose up
+
+
+(Not finished) 
+### 29. Auto build & push docker image to AWS ECR with Github Actions
+1. Create ECR repo.
+2.1 git hub marketplace to see AWS ECR
+    https://github.com/marketplace
+    
+2.2 Create github/workflow/deploy.yaml
+3. Create IAM user (user github-ci;group: deployment)
+
+
+Git hub
+- Setting master can't push direcly from local machine.
+  - mush pass the unit test
+- Have to use feature branch to push and merge to master branch
+
+before push feature branch 
+-git checkout master
+-git pull
+-git checkout ft/ci-build-image
+>git merge master
+>git push origin ft/ci-build-imate
+
+### 30 AWS RDS
+
+### 31 AWS secrets manager
+Generate long number
+>openssl rand -hex 64
+>openssl rand -hex 64 : head -c 32
+
+Install AWS CLI
