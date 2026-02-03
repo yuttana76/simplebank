@@ -427,7 +427,7 @@ before push feature branch
 -git pull
 -git checkout ft/ci-build-image
 >git merge master
->git push origin ft/ci-build-imate
+>git push origin ft/ci-build-image
 
 ### 30 AWS RDS
 
