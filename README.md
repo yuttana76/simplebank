@@ -370,17 +370,6 @@ Run with connect db container
 > docker network ls
 >docker network inspect go-simplebank_default
 
-"ConfigOnly": false,
-        "Containers": {
-            "41afbdc634afec7cbd89cc623343d29132fcbbd3117bd5a915be739d11f5a9e3": {
-                "Name": "db-simplebank",
-                "EndpointID": "f87d2c02fe0d010e816f12a21445ae308ef4b086740e554c885b0eeae87f04be",
-                "MacAddress": "02:42:ac:1a:00:02",
-                "IPv4Address": "172.26.0.2/16",
-                "IPv6Address": ""
-            }
-        },
-
 Create bank network
 >docker network create bank-network
 >docker network connect bank-network  db-simplebank
@@ -411,8 +400,32 @@ Create start.sh
 2.1 git hub marketplace to see AWS ECR
     https://github.com/marketplace
 
+            IAM ,Role,
+                To fix this, follow these steps:
+            1. Add GitHub as an Identity Provider 
+            You must first register GitHub's OIDC endpoint in your AWS IAM Console. 
+            Provider Type: Select OpenID Connect.
+            Provider URL: Enter https://token.actions.githubusercontent.com.
+            Audience: Enter sts.amazonaws.com.
+            Thumbprint: Click Get thumbprint to verify the provider. 
+            
+            2. Create the IAM Role 
+            Once the provider is added, it will appear in the "Web Identity" dropdown during role creation: 
+            Go to Roles > Create Role.
+            Select Web Identity as the trusted entity.
+            Select the GitHub provider you just created from the dropdown.
+            Select the Audience (sts.amazonaws.com). 
+
+            3. Common Setup Requirements
+            Trust Policy: After creating the role, ensure the Trust Relationship is scoped to your specific GitHub Organization or Repository using the token.actions.githubusercontent.com:sub condition to prevent unauthorized access.
+            Workflow Permissions: In your GitHub Action YAML, you must include permissions: id-token: write to allow the runner to request the OIDC token.
+            Official Action: Use the aws-actions/configure-aws-credentials action to handle the exchange of the OIDC token for AWS temporary credentials. 
+            Are you setting this up for a single repository or an entire GitHub organization?
+
+
 2.2 Create github/workflow/deploy.yaml
 3. Create IAM user (user github-ci;group: deployment)
+
 
 
 Git hub
