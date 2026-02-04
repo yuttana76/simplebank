@@ -490,3 +490,9 @@ To reset code after changed
 
 Create new branch
 >git checkout -b ft/secrets_manager
+
+Pull ECR docker to local
+
+install
+>aws ecr get-login-password
+
