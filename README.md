@@ -400,7 +400,10 @@ Create start.sh
 2.1 git hub marketplace to see AWS ECR
     https://github.com/marketplace
 
-            IAM ,Role,
+            Reference:
+            https://www.youtube.com/watch?v=Q8KZ7N26alw
+
+            IAM ,Role, config
                 To fix this, follow these steps:
             1. Add GitHub as an Identity Provider 
             You must first register GitHub's OIDC endpoint in your AWS IAM Console. 
@@ -408,7 +411,7 @@ Create start.sh
             Provider URL: Enter https://token.actions.githubusercontent.com.
             Audience: Enter sts.amazonaws.com.
             Thumbprint: Click Get thumbprint to verify the provider. 
-            
+
             2. Create the IAM Role 
             Once the provider is added, it will appear in the "Web Identity" dropdown during role creation: 
             Go to Roles > Create Role.
@@ -443,10 +446,54 @@ before push feature branch
 >git push origin ft/ci-build-image
 
 ### 30 AWS RDS
+for migrate table in ASW RDS db.
+Run make in local like this
+>make migrateup-aws
 
-### 31 AWS secrets manager
+### 31 AWS secret manager
 Generate long number
 >openssl rand -hex 64
->openssl rand -hex 64 : head -c 32
 
-Install AWS CLI
+Just for first 32 charactor
+>openssl rand -hex 64 | head -c 32
+
+SET 
+TOKEN_SYMMETRIC_KEY=
+
+Install AWS Command Line
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+Go to IAM. create access key
+
+setup config with command
+>aws configure
+
+        (base) mpamdev03@MPAMs-Air ~ % aws configure
+        AWS Access Key ID [****************T2VV]: AKIAT5HV6AGBEPOK2MP7
+        AWS Secret Access Key [****************B/4P]: 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
+        Default region name [us-east-1]: ap-southeast-7
+        Default output format [None]: json
+        (base) mpamdev03@MPAMs-Air ~ % 
+
+To see credential values
+>cat ~/.aws/credentials 
+
+Run for help
+>aws secretsmanager help
+
+AWS get secret value
+>aws secretsmanager get-secret-value --secret-id simple_bank
+
+In IAM user to add permissions  
+  -SecretsManagerReadWrite
+
+Install jd
+https://jqlang.org/download/
+
+>aws secretsmanager get-secret-value --secret-id simple_bank --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' >app.env 
+
+To reset code after changed
+.git checkout .
+
+Create new branch
+>git checkout -b ft/secrets_manager

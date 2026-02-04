@@ -12,6 +12,9 @@ createdb:
 dropdb:
 	docker exec -it db-simplebank dropdb -U postgres simple_bank
 
+migrateup-aws:
+	migrate -path db/migration -database "postgresql://root:simple_bank_secret@simple-bank.c3sggkk2azku.ap-southeast-7.rds.amazonaws.com:5432/simple_bank" -verbose up
+
 migrateup:
 	migrate -path db/migration -database "$(DB_URL)" -verbose up
 
