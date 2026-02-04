@@ -469,8 +469,8 @@ setup config with command
 >aws configure
 
         (base) mpamdev03@MPAMs-Air ~ % aws configure
-        AWS Access Key ID [****************T2VV]: yyyyyyyyyy
-        AWS Secret Access Key [****************B/4P]: xxxxxxxxx
+        **********************
+        **********************
         Default region name [us-east-1]: ap-southeast-7
         Default output format [None]: json
         (base) mpamdev03@MPAMs-Air ~ % 
