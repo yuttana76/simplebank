@@ -492,8 +492,13 @@ To reset code after changed
 Create new branch
 >git checkout -b ft/secrets_manager
 
-Pull ECR docker to local
+### Pull ECR docker to local
 
 install
 >aws ecr get-login-password
 
+Login
+>aws ecr get-login-password | docker login --username AWS \
+--password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+
+>docker pull <ecr url>
