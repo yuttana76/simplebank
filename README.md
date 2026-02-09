@@ -450,6 +450,7 @@ for migrate table in ASW RDS db.
 Run make in local like this
 >make migrateup-aws
 
+
 ### 31 AWS secret manager
 Generate long number
 >openssl rand -hex 64
