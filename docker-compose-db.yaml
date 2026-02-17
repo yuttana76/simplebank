@@ -4,13 +4,13 @@ services:
     container_name: db-simplebank
     image: postgres:14.0-alpine   
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      # POSTGRES_DB: postgres
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=simple_bank_secret
+      - POSTGRES_DB=simple_bank
     ports:
       - 5432:5432
     volumes:
-      - ./data/postgres_data:/var/lib/postgresql/data # Persists data in a named volume
+      - ./data/simple_bank:/var/lib/postgresql/data # Persists data in a named volume
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s

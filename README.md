@@ -15,7 +15,7 @@ v4.11.0
 >migrate help
 
 Create files
->migrate create -ext sql -dir db/migration2 -seq init_sechema
+>migrate create -ext sql -dir db/migration -seq init_sechema
 
 Shell to postgres db.
 >docker exec -it db-simplebank /bin/sh
@@ -499,6 +499,45 @@ install
 
 Login
 >aws ecr get-login-password | docker login --username AWS \
---password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+--password-stdin <id>.dkr.ecr.ap-southeast-7.amazonaws.com
 
->docker pull <ecr url>
+>docker pull <image id>
+
+>docker run -p 8080:8080 <image id>
+
+
+### 32 Kubernetes architecture & How to create an EKS cluster on AWS
+
+AWS EKS
+
+### 39 How to manage user session with refresh token
+Modify 2 files
+
+**************
+Create model
+**************
+1. Create  migration files 
+>migrate create -ext sql -dir db/migration -seq add_session
+
+(/db/migration/000003_add_session.up.sql,
+/db/migration/000003_add_session.down.sql)
+after migrations files created .To modify its
+
+2. Run make file to create table.
+>make migrateup
+
+3. Create query/session.sql
+
+4. Run make file. generate golang code in db/sqc/
+>make sqlc
+
+5. Generate mock stor
+>make mock
+Error show->(api/user_test.go:194:31: cannot use store (variable of type *mockdb.MockStore) as db.Store value in argument to newTestServer: *mockdb.MockStore does not implement db.Store (missing method CreateSession))
+
+6. Run test
+>make test
+
+**************
+Implement business logic
+**************
