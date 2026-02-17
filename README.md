@@ -573,3 +573,32 @@ $dbml2sql --postgres -o doc/schema.sql doc/db.dbml
 
 Update make file.
 
+### 41. Introduction to gRPC
+
+https://grpc.io/docs/languages/go/quickstart/
+
+Install Protocol buffer
+https://protobuf.dev/installation/
+brew install protobuf
+brew install protobuf
+
+$protoc --version
+
+Install 2 Go plugins 
+$go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+$protoc-gen-go --version
+
+$go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+$protoc-gen-go-grpc --version
+
+$export PATH="$PATH:$(go env GOPATH)/bin"
+
+Start to code
+Create folder /proto
+
+VS Code extension
+-proto3
+
+
+Make package clean / To find the missing package
+$go mod tidy
