@@ -541,3 +541,35 @@ Error show->(api/user_test.go:194:31: cannot use store (variable of type *mockdb
 **************
 Implement business logic
 **************
+
+
+### 40. Generate DB documentation page and schema SQL dump from DBML
+follow this step
+https://docs.dbdocs.io/
+
+Install vscode entension
+-vscode-dbml
+
+
+$ dbdocs login
+? Choose a login method: Email
+? Your email: <your email address>
+✔ Request email authentication
+? Please input OTP code sent to the email:
+
+Generate dbdocs project
+$ dbdocs build doc/db.dbml
+
+https://dbdocs.io/yuttana76/simple_bank
+
+$ dbdocs password --set secret --project simple_bank
+✔ Password is set for <project name>
+
+Install dbml cli.
+$npm install -g @dbml/cli
+
+$dbml2sql --help
+$dbml2sql --postgres -o doc/schema.sql doc/db.dbml
+
+Update make file.
+
