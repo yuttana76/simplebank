@@ -24,6 +24,7 @@ func TestPasetoMaker(t *testing.T) {
 
 	require.NoError(t, err)
 	require.NotEmpty(t, token)
+	require.NotEmpty(t, payload)
 
 	// payload, err := maker.VerifyToken(token)
 	payload, err = maker.VerifyToken(token, TokenTypeAccessToken)

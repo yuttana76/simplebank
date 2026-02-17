@@ -5,10 +5,10 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=simple_bank_secret
       - POSTGRES_DB=simple_bank
-    # ports:
-    #   - "5432:5432"
-    # volumes:
-    #   - ./data/postgres_data14:/var/lib/postgresql/data # Persists data in a named volume
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/simple_bank:/var/lib/postgresql/data # Persists data in a named volume
   api:
     build:
       context: .
