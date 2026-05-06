@@ -10,7 +10,7 @@ option go_package = "github.com/yuttana76/simbplebank/pb";
 
 // The simple bank service definition.
 service SimpleBank {
-      // Create user RPC
+    // Create user RPC
     rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {}
     // Login user RPC
     rpc LoginUser (LoginUserRequest) returns (LoginUserResponse) {}

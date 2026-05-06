@@ -638,6 +638,35 @@ $go mod
 >git checkout -b ft/grpc-api
 
 1. Create proto file. In this case, create in folder /proto
+2. Create rpc_create_user.proto
+3. Create service_simple_bank.proto
+4. Run >make proto
 
+5. Create folder /gapi 
+6. Create server.go
+7. Run >make server to start server
 
+For test grpc
+User enans tool
+https://github.com/ktr0731/evans
 
+-MacOs Install grpc test tools
+>brew tap ktr0731/evans
+>brew install evans
+
+-Test grpc server and call function
+
+>evans --host localhost --port 9090 -r repl
+> show package
+> package pb
+> show service
+> show message
+
+### Test the service
+
+1> package pb
+2> show service
+3> service SimpleBank
+4> call CreateUser
+
+> exit

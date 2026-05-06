@@ -4,8 +4,15 @@ package pb;
 
 import "google/protobuf/timestamp.proto";
 
+//Generate to 
 option go_package = "github.com/yuttana76/simbplebank/pb";
 
+// User object will hold user information
+// username
+// full_name
+// email
+// password_changed_at
+// created_at
 message User {
     string username = 1;
     string full_name = 2;
