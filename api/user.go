@@ -115,6 +115,7 @@ func (server *Server) loginUser(ctx *gin.Context) {
 	}
 
 	role := util.DepositorRole
+	//create access token
 	accessToken, accessPayload, err := server.tokenMaker.CreateToken(
 		user.Username,
 		role,
@@ -126,6 +127,7 @@ func (server *Server) loginUser(ctx *gin.Context) {
 		return
 	}
 
+	//create refresh token
 	refreshToken, refreshPayload, err := server.tokenMaker.CreateToken(
 		user.Username,
 		role,
@@ -137,6 +139,7 @@ func (server *Server) loginUser(ctx *gin.Context) {
 		return
 	}
 
+	//create session in database
 	session, err := server.store.CreateSession(ctx, db.CreateSessionParams{
 		ID:           refreshPayload.ID,
 		Username:     user.Username,
@@ -151,6 +154,7 @@ func (server *Server) loginUser(ctx *gin.Context) {
 		return
 	}
 
+	//wrap response
 	rsp := loginUserResponse{
 		SessionID:             session.ID,
 		AccessToken:           accessToken,

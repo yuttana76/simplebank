@@ -27,12 +27,14 @@ func (server *Server) renewAccessToken(ctx *gin.Context) {
 		return
 	}
 
+	//verify refresh token
 	refreshPayload, err := server.tokenMaker.VerifyToken(req.RefreshToken, token.TokenTypeRefreshToken)
 	if err != nil {
 		ctx.JSON(http.StatusUnauthorized, errorResponse(err))
 		return
 	}
 
+	//check session exists in db
 	session, err := server.store.GetSession(ctx, refreshPayload.ID)
 	if err != nil {
 		if err == sql.ErrNoRows {

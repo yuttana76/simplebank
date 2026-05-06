@@ -511,7 +511,21 @@ Login
 AWS EKS
 
 ### 39 How to manage user session with refresh token
-Modify 2 files
+*** TODO in this section
+1. modify app.env
+2. modify util/config.go
+3. run cmd >migrate create -ext sql -dir db/migration -seq add_session
+4. update db/migration/000003_add_session.up.sql, 
+   db/migration/000003_add_session.down.sql
+5. run >make migrateup
+6. create query/session.sql
+7. generate golang code in db/sqc/ folder with command 
+>make sqlc
+8. generate mock db store code in db/mock/ folder with command 
+>make mock
+9. Run test with command make test
+
+
 
 **************
 Create model
@@ -601,4 +615,29 @@ VS Code extension
 
 
 Make package clean / To find the missing package
-$go mod tidy
+$go mod 
+
+### 42. Define gRPC API and generate Go code with protobuf
+
+1. Install protobuf
+>brew install protobuf
+>protoc --version
+
+2. Install 2 Go plugins 
+>go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+>protoc-gen-go --version
+
+>go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+>protoc-gen-go-grpc --version
+
+>export PATH="$PATH:$(go env GOPATH)/bin"
+
+### Start coding grpc
+ - install vscode-proto3 plugin
+ - Create new branch 
+>git checkout -b ft/grpc-api
+
+1. Create proto file. In this case, create in folder /proto
+
+
+
