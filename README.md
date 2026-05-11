@@ -637,6 +637,7 @@ $go mod
  - Create new branch 
 >git checkout -b ft/grpc-api
 
+### Step to code
 1. Create proto file. In this case, create in folder /proto
 2. Create rpc_create_user.proto
 3. Create service_simple_bank.proto
@@ -654,9 +655,11 @@ https://github.com/ktr0731/evans
 >brew tap ktr0731/evans
 >brew install evans
 
--Test grpc server and call function
+- evans: Test grpc server and call function
 
 >evans --host localhost --port 9090 -r repl
+>make evans
+
 > show package
 > package pb
 > show service
@@ -667,6 +670,22 @@ https://github.com/ktr0731/evans
 1> package pb
 2> show service
 3> service SimpleBank
-4> call CreateUser
+4> show rpc
+5> call CreateUser
 
 > exit
+
+### 44. Implement gRPC API to create and login users in Go
+1. Look in gapi/server.go  // pb.UnimplementedSimpleBankServer is embed in server.go .What funcitons we not implement it.(Right now found 2 functions are 'CreateUser' and 'LoginUser')
+
+2. Create new file /gapi/rpc_create_user.go
+
+### 45. gRPC Gateway: write code once, serve both gRPC & HTTP requests
+Write code once Serve both gRPC & HTTP requests
+
+You can read our docs at:
+ https://grpc-ecosystem.github.io/grpc-gateway/
+
+ https://github.com/grpc-ecosystem/grpc-gateway
+
+>make proto
