@@ -689,3 +689,65 @@ You can read our docs at:
  https://github.com/grpc-ecosystem/grpc-gateway
 
 >make proto
+
+### 47. Automatic generate & serve swagger documentation from Go server
+
+-Online swagger
+ www.swaggerhub.com
+
+-swagger-ui
+https://github.com/swagger-api/swagger-ui
+Clone and copy 
+>cp -r dist/* ~/Projects/go/simplebank/doc/swagger 
+
+Edit file swagger-initializer.js
+```
+    url: "simple_bank.swagger.json",
+```
+
+### 48. Embed static front-end files inside Golang backend server's binary
+
+https://github.com/rakyll/statik
+
+>go mod tidy
+
+### 51. Partial update DB record with SQLC nullable arguments
+https://docs.sqlc.dev/en/latest/howto/named_parameters.html
+
+Checking sql version
+>sqlc version
+>brew info sqlc
+>brew upgrade sqlc
+
+Uninstall sqlc (if in the future)
+>brew uninstall sqlc
+
+vedio:10.41
+
+Reference to lecture ### 5:
+
+TODO:
+1. Update db/query/user.sql
+2. Run >make sqlc
+3. >make mock
+
+
+Verify all is pass
+>make test
+>docker compose down
+>docker compose up  
+
+### 52. Build gRPC update API with optional parameters
+
+TODO: incase update user 
+1. Create new branch 
+>git checkout -b ft/update-user
+2. Create /proto/rpc_update_user.proto
+3. Update /proto/service_simple_bank.proto
+4. Run >make proto
+4.1 check file in /pb file rpc_update_user.pb.go auto generated.
+4.2 check file in /gapi create new file rpc_update_user.go and implement method.
+4.3 check file in /doc/swagger new file rpc_update_user.swagger.json auto generated.
+5. Run >make server to start server
+
+*** !!! Add filed process for update In vedeo:12.02
