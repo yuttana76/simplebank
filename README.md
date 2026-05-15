@@ -751,3 +751,5 @@ TODO: incase update user
 5. Run >make server to start server
 
 *** !!! Add filed process for update In vedeo:12.02
+
+### 53. Add authorization to protect gRPC API
