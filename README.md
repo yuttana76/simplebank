@@ -753,3 +753,18 @@ TODO: incase update user
 *** !!! Add filed process for update In vedeo:12.02
 
 ### 53. Add authorization to protect gRPC API
+
+### 56. Implement background worker with Redis task queue
+https://pkg.go.dev/github.com/hibiken/asynq
+>go get -u github.com/hibiken/asynq
+
+
+### 57. Integrate async worker to Go web server
+
+- Install redis server by docker
+>make redis
+>docker exec -it redis red
+is-cli ping
+
+- How to kill a process
+$ kill -9 98925
