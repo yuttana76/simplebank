@@ -2,9 +2,12 @@
 # Backend Master Class
 https://www.youtube.com/watch?v=rx6CPDK_5mU&list=PLy_6D98if3ULEtXtNSY_2qN21VCKgoQAE&index=1
 
+- github
+https://github.com/techschool/simplebank/blob/master/worker/processor.go
+
 ## [Backend #1] Design DB schema and generate SQL code with dbdiagram.io
 
-https://dbdiagram.io/d
+https://dbdiagram.io
 
 
 ## [Backend #3] How to write & run database migration in Golang
@@ -770,3 +773,32 @@ is-cli ping
 $ kill -9 98925
 
 ### 61. How to send email in Go via Gmail
+https://github.com/jordan-wright/email
+
+- Gmail setting: Gmail 2 steps verification
+- Gmail use App password not user email password
+    https://myaccount.google.com/apppasswords
+
+- Email service 
+    - Link AWS SES  : 
+    - for AWS SES 
+
+
+### 62. How to skip test in Go and config test flag in vscode
+
+- Setting -> Editor setting -> Go test flag:
+VS Code Setting
+```json
+{
+    "go.testFlags": [
+        "-v",
+        "-count=1"
+    ]
+}
+```
+63. Email verification feature: design DB and send email
+1. Create new table design /doc/db.dbml
+2. Run >make db_schema
+
+
+help.steampowered.com
