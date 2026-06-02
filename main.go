@@ -22,6 +22,7 @@ import (
 	db "github.com/yuttana76/simbplebank/db/sqlc"
 	_ "github.com/yuttana76/simbplebank/doc/statik"
 	"github.com/yuttana76/simbplebank/gapi"
+	"github.com/yuttana76/simbplebank/mail"
 	"github.com/yuttana76/simbplebank/pb"
 	"github.com/yuttana76/simbplebank/util"
 	"github.com/yuttana76/simbplebank/worker"
@@ -62,7 +63,7 @@ func main() {
 	taskDistributor := worker.NewRedisTaskDistributor(redisOpt)
 
 	// start background worker
-	go runTaskProcessor(redisOpt, store)
+	go runTaskProcessor(config, redisOpt, store)
 	go runGatewayServer(config, store, taskDistributor)
 	runGRPCServer(config, store, taskDistributor)
 	// runGinServer(config, store) //Old for rest api with gin
@@ -86,8 +87,10 @@ func runDBMigration(migrationURL string, dbSource string) {
 	log.Info().Msg("db migrated successfully")
 }
 
-func runTaskProcessor(redisOpt asynq.RedisClientOpt, store db.Store) {
-	taskProcessor := worker.NewRedisTaskProcessor(redisOpt, store)
+func runTaskProcessor(config util.Config, redisOpt asynq.RedisClientOpt, store db.Store) {
+	mailer := mail.NewGmailSender(config.EmailSenderName, config.EmailSenderAddress, config.EmailSenderPassword)
+
+	taskProcessor := worker.NewRedisTaskProcessor(redisOpt, store, mailer)
 	log.Info().Msg("start task processor")
 	err := taskProcessor.Start()
 	if err != nil {

@@ -10,6 +10,13 @@ https://github.com/techschool/simplebank/blob/master/worker/processor.go
 https://dbdiagram.io
 
 
+- Kill port when it is used
+>lsof -i :8080 -i :9090
+>kill -9 [PID]
+
+
+
+
 ## [Backend #3] How to write & run database migration in Golang
 Install migrate
 >brew install sqlc
@@ -796,9 +803,20 @@ VS Code Setting
     ]
 }
 ```
-63. Email verification feature: design DB and send email
+### 63. Email verification feature: design DB and send email
 1. Create new table design /doc/db.dbml
 2. Run >make db_schema
 
+- Migrate db
+>make new_migration name=add_verify_emails
+- modify 2 files  db/migration/000004_add_verify_emails.up.sql and  db/migration/000004_add_verify_emails.down.
+>make migrateup
+(if want to remove table on previous db just run >make migratedown1 and solve the problem and do again  
+>make migrateup )
 
-help.steampowered.com
+- sqlc to generate golang code
+1. Create new query/verify_email.sql
+2. Run >make sqlc
+3. Run >make mock
+(Take look code generated in folder sqlc)
+
