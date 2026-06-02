@@ -820,3 +820,22 @@ VS Code Setting
 3. Run >make mock
 (Take look code generated in folder sqlc)
 
+### 64 Implement email verification API in Go
+1. Implement 
+1. Create file /proto/rpc_verify_email.proto
+2. Update /proto/service_simple_bank.proto
+3. Run >make proto
+3.1 check file in /pb file rpc_verify_email.pb.go auto generated.
+3.2 check file in /gapi create new file rpc_verify_email.go and implement method.
+3.3 check file in /doc/swagger new file rpc_verify_email.swagger.json auto generated.
+
+4. Modify  query/user.sql and query/verify_email.sql
+5. Run >make sqlc
+
+// Run this when add store interface
+6. Run >make mock
+7. Implement tx_verify_email.go in db/sqlc/
+
+- To Clean db
+>make migratedown
+>make migrateup
