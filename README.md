@@ -839,3 +839,5 @@ VS Code Setting
 - To Clean db
 >make migratedown
 >make migrateup
+
+### 65. Unit test gRPC API with mock DB & Redis
