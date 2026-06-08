@@ -841,3 +841,6 @@ VS Code Setting
 >make migrateup
 
 ### 65. Unit test gRPC API with mock DB & Redis
+
+### 68. Switch DB driver from lib/pq to pgx
+https://docs.sqlc.dev/en/latest/howto/overrides.html
