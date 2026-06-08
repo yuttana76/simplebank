@@ -5,7 +5,6 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lib/pq"
 	db "github.com/yuttana76/simbplebank/db/sqlc"
 	"github.com/yuttana76/simbplebank/token"
 )
@@ -31,14 +30,10 @@ func (server *Server) createAccount(ctx *gin.Context) {
 
 	account, err := server.store.CreateAccount(ctx, arg)
 	if err != nil {
-		if pgErr, ok := err.(*pq.Error); ok {
-			// log.Println(pgErr.Code.Name())
-			switch pgErr.Code.Name() {
-			case "foreign_key_violation", "unique_violation":
-				ctx.JSON(http.StatusForbidden, errorResponse(err))
-				return
-			}
-
+		errCode := db.ErrorCode(err)
+		if errCode == db.ForeignKeyViolation || errCode == db.UniqueViolation {
+			ctx.JSON(http.StatusForbidden, errorResponse(err))
+			return
 		}
 
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))

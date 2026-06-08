@@ -844,3 +844,6 @@ VS Code Setting
 
 ### 68. Switch DB driver from lib/pq to pgx
 https://docs.sqlc.dev/en/latest/howto/overrides.html
+
+### 69. How to properly handle DB errors with pgx driver
+https://www.postgresql.org/docs/current/errcodes-appendix.html
