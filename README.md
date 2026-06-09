@@ -847,3 +847,12 @@ https://docs.sqlc.dev/en/latest/howto/overrides.html
 
 ### 69. How to properly handle DB errors with pgx driver
 https://www.postgresql.org/docs/current/errcodes-appendix.html
+
+### 70. Docker compose: port + volume mapping
+- Update Go to v1.21
+- Add redis to docker-compose.yaml
+    https://hub.docker.com/_/redis
+- Use docker volume to persist Postgres data even when docker compose down
+>docker volumes ls
+>docker volume rm simplebank_data-volume
+>docker inspect simplebank_data-volume

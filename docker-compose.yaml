@@ -8,23 +8,24 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./data/simple_bank:/var/lib/postgresql/data # Persists data in a named volume
+      - data-volume:/var/lib/postgresql/data
+  redis:
+    image: redis:7-alpine
   api:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+      - "9090:9090"
     environment:
       - DB_SOURCE=postgresql://root:simple_bank_secret@postgres:5432/simple_bank?sslmode=disable
       - GIN_MODE=release
+      - REDIS_ADDRESS=redis:6379
     depends_on:
       - postgres
-    entrypoint:
-      [
-        "/app/wait-for.sh",
-        "postgres:5432",
-        "--",
-        "/app/start.sh"
-      ]
+      - redis
+    entrypoint: [ "/app/wait-for.sh", "postgres:5432", "--", "/app/start.sh" ]
     command: [ "/app/main" ]
+volumes:
+  data-volume:
